@@ -1,0 +1,1466 @@
+# Speedcams MQTT API 1.0.0 documentation
+
+- Test description
+- todo info about https://github.com/cloudevents/
+- todo info about basic info about mqtt
+- todo info about specific use case with retained messages
+- ?todo info about operations 
+
+## Table of Contents
+
+* [Servers](#servers)
+* [Channels](#channels)
+
+<a name="servers"></a>
+
+## Servers
+
+<table>
+  <thead>
+    <tr>
+      <th>URL</th>
+      <th>Protocol</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td>mqtt-broker.speedcams.tomtom.com:1883</td>
+      <td>mqtt5.0</td>
+      <td>Production mqtt broker</td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <details>
+          <summary>URL Variables</summary>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Default value</th>
+                <th>Possible values</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              </tbody>
+          </table>
+        </details>
+      </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+## Channels
+
+
+
+<a name="channel-camera/{tileSystem}/{tileCode}/{tileCode}/.../{tileCode}/{cameraType}/{cameraId}"></a>
+
+The topic on which message with single camera is published 
+ex. `camera/H3/831e26fffffffff/841e261ffffffff/851e2603fffffff/861e2600fffffff/MOBILE_SPEED_CAM/522490973`
+
+
+#### Channel Parameters
+
+##### tileCode
+
+Tile id generated on some resolution level
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>tileCode </td>
+  <td>string</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+##### tileSystem
+
+Tile indexing system name
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>tileSystem </td>
+  <td>string</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+##### cameraType
+
+Tile indexing system name
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>cameraType </td>
+  <td>string</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+##### cameraId
+
+Tile indexing system name
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>cameraId </td>
+  <td>integer</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+
+
+
+###  `publish` camera/{tileSystem}/{tileCode}/{tileCode}/.../{tileCode}/{cameraType}/{cameraId}
+
+*Camera topic with single camera* 
+
+#### Message
+
+Accepts **one of** the following messages:
+
+##### Message `newOrChangedCamera`
+
+todo describe mechanism of publications (retained messages)
+
+
+
+##### Payload
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>id </td>
+  <td>integer</td>
+  <td><p>Id of message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>time </td>
+  <td>string</td>
+  <td><p>ISO formatted date of the message | RFC 3339 todo</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>specversion </td>
+  <td>string</td>
+  <td><p>Cloudevents specification version</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>type </td>
+  <td>string</td>
+  <td><p>Type of message</p>
+ </td>
+  <td><code>CameraCreated</code>, <code>CameraModified</code></td>
+</tr>
+
+<tr>
+  <td>source </td>
+  <td>string</td>
+  <td><p>URL of broker that published message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>datacontenttype </td>
+  <td>string</td>
+  <td><p>Content type of message in under <code>data</code></p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>data </td>
+  <td>object</td>
+  <td><p>Message payload containing message type specific data</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.id </td>
+  <td>integer</td>
+  <td><p>Camera id</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.latitude </td>
+  <td>number</td>
+  <td><p>Latitude location of camera</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.longtitude </td>
+  <td>number</td>
+  <td><p>Longtitude location of camera</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.bearing </td>
+  <td>integer</td>
+  <td><p>Camera bearing</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.openLR </td>
+  <td>string</td>
+  <td><p>Location serialized to openLR format http://www.openlr.org/</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.speedLimit </td>
+  <td>integer</td>
+  <td><p>Camera speed limit</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.type </td>
+  <td>string</td>
+  <td><p>Type of camera</p>
+ </td>
+  <td><code>MOBILE_SPEED_CAM</code>, <code>RED_LIGHT_CAM</code>, <code>FIXED_SPEED_CAM</code></td>
+</tr></tbody>
+</table>
+
+
+###### Example of payload _(generated)_
+
+```json
+{
+  "id": 123,
+  "time": "2019-08-24T14:15:22Z",
+  "specversion": "1.0",
+  "type": "CameraCreated",
+  "source": "mqtt-broker.speedcams.tomtom.com",
+  "datacontenttype": "text/json",
+  "data": {
+    "id": 123,
+    "latitude": 52.0805705,
+    "longtitude": 19.9161658,
+    "bearing": 83,
+    "openLR": "Kw4pICUIUUsiDAHWAmkLUpc=",
+    "speedLimit": 50,
+    "type": "MOBILE_SPEED_CAM"
+  }
+}
+```
+
+
+##### Message `deletedCamera`
+
+
+
+##### Payload
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>id </td>
+  <td>integer</td>
+  <td><p>Id of message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>time </td>
+  <td>string</td>
+  <td><p>ISO formatted date of the message | RFC 3339 todo</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>specversion </td>
+  <td>string</td>
+  <td><p>Cloudevents specification version</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>type </td>
+  <td>string</td>
+  <td><p>Type of message</p>
+ </td>
+  <td><code>CameraDeleted</code></td>
+</tr>
+
+<tr>
+  <td>source </td>
+  <td>string</td>
+  <td><p>URL of broker that published message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>datacontenttype </td>
+  <td>string</td>
+  <td><p>Content type of message in under <code>data</code></p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>data </td>
+  <td>object</td>
+  <td><p>Message payload containing id of deleted camera</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.id </td>
+  <td>integer</td>
+  <td><p>Camera id</p>
+ </td>
+  <td><em>Any</em></td>
+</tr></tbody>
+</table>
+
+
+###### Example of payload _(generated)_
+
+```json
+{
+  "id": 123,
+  "time": "2019-08-24T14:15:22Z",
+  "specversion": "1.0",
+  "type": "CameraDeleted",
+  "source": "mqtt-broker.speedcams.tomtom.com",
+  "datacontenttype": "text/json",
+  "data": {
+    "id": 123
+  }
+}
+```
+
+
+
+
+
+
+<a name="channel-camera/{tileSystem}/{tileCode}/{tileCode}/#"></a>
+
+Subscription to such topic will provide cameras from all tiles nested to last tile in topic name
+ex. `camera/H3/831e26fffffffff/841e261ffffffff/#`
+
+
+#### Channel Parameters
+
+##### tileCode
+
+Tile id generated on some resolution level
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>tileCode </td>
+  <td>string</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+##### tileSystem
+
+Tile indexing system name
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>tileSystem </td>
+  <td>string</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+
+
+
+###  `publish` camera/{tileSystem}/{tileCode}/{tileCode}/#
+
+*Camera topic with all cameras in some tile* 
+
+#### Message
+
+Accepts **one of** the following messages:
+
+##### Message `newOrChangedCamera`
+
+todo describe mechanism of publications (retained messages)
+
+
+
+##### Payload
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>id </td>
+  <td>integer</td>
+  <td><p>Id of message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>time </td>
+  <td>string</td>
+  <td><p>ISO formatted date of the message | RFC 3339 todo</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>specversion </td>
+  <td>string</td>
+  <td><p>Cloudevents specification version</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>type </td>
+  <td>string</td>
+  <td><p>Type of message</p>
+ </td>
+  <td><code>CameraCreated</code>, <code>CameraModified</code></td>
+</tr>
+
+<tr>
+  <td>source </td>
+  <td>string</td>
+  <td><p>URL of broker that published message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>datacontenttype </td>
+  <td>string</td>
+  <td><p>Content type of message in under <code>data</code></p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>data </td>
+  <td>object</td>
+  <td><p>Message payload containing message type specific data</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.id </td>
+  <td>integer</td>
+  <td><p>Camera id</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.latitude </td>
+  <td>number</td>
+  <td><p>Latitude location of camera</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.longtitude </td>
+  <td>number</td>
+  <td><p>Longtitude location of camera</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.bearing </td>
+  <td>integer</td>
+  <td><p>Camera bearing</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.openLR </td>
+  <td>string</td>
+  <td><p>Location serialized to openLR format http://www.openlr.org/</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.speedLimit </td>
+  <td>integer</td>
+  <td><p>Camera speed limit</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.type </td>
+  <td>string</td>
+  <td><p>Type of camera</p>
+ </td>
+  <td><code>MOBILE_SPEED_CAM</code>, <code>RED_LIGHT_CAM</code>, <code>FIXED_SPEED_CAM</code></td>
+</tr></tbody>
+</table>
+
+
+###### Example of payload _(generated)_
+
+```json
+{
+  "id": 123,
+  "time": "2019-08-24T14:15:22Z",
+  "specversion": "1.0",
+  "type": "CameraCreated",
+  "source": "mqtt-broker.speedcams.tomtom.com",
+  "datacontenttype": "text/json",
+  "data": {
+    "id": 123,
+    "latitude": 52.0805705,
+    "longtitude": 19.9161658,
+    "bearing": 83,
+    "openLR": "Kw4pICUIUUsiDAHWAmkLUpc=",
+    "speedLimit": 50,
+    "type": "MOBILE_SPEED_CAM"
+  }
+}
+```
+
+
+##### Message `deletedCamera`
+
+
+
+##### Payload
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>id </td>
+  <td>integer</td>
+  <td><p>Id of message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>time </td>
+  <td>string</td>
+  <td><p>ISO formatted date of the message | RFC 3339 todo</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>specversion </td>
+  <td>string</td>
+  <td><p>Cloudevents specification version</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>type </td>
+  <td>string</td>
+  <td><p>Type of message</p>
+ </td>
+  <td><code>CameraDeleted</code></td>
+</tr>
+
+<tr>
+  <td>source </td>
+  <td>string</td>
+  <td><p>URL of broker that published message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>datacontenttype </td>
+  <td>string</td>
+  <td><p>Content type of message in under <code>data</code></p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>data </td>
+  <td>object</td>
+  <td><p>Message payload containing id of deleted camera</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.id </td>
+  <td>integer</td>
+  <td><p>Camera id</p>
+ </td>
+  <td><em>Any</em></td>
+</tr></tbody>
+</table>
+
+
+###### Example of payload _(generated)_
+
+```json
+{
+  "id": 123,
+  "time": "2019-08-24T14:15:22Z",
+  "specversion": "1.0",
+  "type": "CameraDeleted",
+  "source": "mqtt-broker.speedcams.tomtom.com",
+  "datacontenttype": "text/json",
+  "data": {
+    "id": 123
+  }
+}
+```
+
+
+
+
+
+
+<a name="channel-zone/{tileSystem}/{tileCode}/{tileCode}/.../{tileCode}/{cameraType}/{cameraId}"></a>
+
+The topic on which message with single camera is published 
+ex. `camera/H3/831e26fffffffff/841e261ffffffff/851e2603fffffff/861e2600fffffff/MOBILE_SPEED_CAM/522490973`
+
+
+#### Channel Parameters
+
+##### tileCode
+
+Tile id generated on some resolution level
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>tileCode </td>
+  <td>string</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+##### tileSystem
+
+Tile indexing system name
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>tileSystem </td>
+  <td>string</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+##### cameraType
+
+Tile indexing system name
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>cameraType </td>
+  <td>string</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+##### cameraId
+
+Tile indexing system name
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>cameraId </td>
+  <td>integer</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+
+
+
+###  `publish` zone/{tileSystem}/{tileCode}/{tileCode}/.../{tileCode}/{cameraType}/{cameraId}
+
+*Zone topic with single camera* 
+
+#### Message
+
+Accepts **one of** the following messages:
+
+##### Message `newOrChangedZone`
+
+
+
+##### Payload
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>id </td>
+  <td>integer</td>
+  <td><p>Id of message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>time </td>
+  <td>string</td>
+  <td><p>ISO formatted date of the message | RFC 3339 todo</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>specversion </td>
+  <td>string</td>
+  <td><p>Cloudevents specification version</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>type </td>
+  <td>string</td>
+  <td><p>Type of message</p>
+ </td>
+  <td><code>ZoneCreated</code>, <code>ZoneModified</code></td>
+</tr>
+
+<tr>
+  <td>source </td>
+  <td>string</td>
+  <td><p>URL of broker that published message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>datacontenttype </td>
+  <td>string</td>
+  <td><p>Content type of message in under <code>data</code></p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>data </td>
+  <td>object</td>
+  <td><p>Message payload containing message type specific data</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.id </td>
+  <td>integer</td>
+  <td><p>Camera id</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.openLR </td>
+  <td>string</td>
+  <td><p>Location serialized to openLR format http://www.openlr.org/</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.speedLimit </td>
+  <td>integer</td>
+  <td><p>Camera speed limit</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.type </td>
+  <td>string</td>
+  <td><p>Type of zone</p>
+ </td>
+  <td><code>TODO_ZONE_TYPE</code></td>
+</tr></tbody>
+</table>
+
+
+###### Example of payload _(generated)_
+
+```json
+{
+  "id": 123,
+  "time": "2019-08-24T14:15:22Z",
+  "specversion": "1.0",
+  "type": "ZoneCreated",
+  "source": "mqtt-broker.speedcams.tomtom.com",
+  "datacontenttype": "text/json",
+  "data": {
+    "id": 123,
+    "openLR": "Kw4pICUIUUsiDAHWAmkLUpc=",
+    "speedLimit": 50,
+    "type": "TODO_ZONE_TYPE"
+  }
+}
+```
+
+
+##### Message `deletedZone`
+
+
+
+##### Payload
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>id </td>
+  <td>integer</td>
+  <td><p>Id of message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>time </td>
+  <td>string</td>
+  <td><p>ISO formatted date of the message | RFC 3339 todo</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>specversion </td>
+  <td>string</td>
+  <td><p>Cloudevents specification version</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>type </td>
+  <td>string</td>
+  <td><p>Type of message</p>
+ </td>
+  <td><code>ZoneDeleted</code></td>
+</tr>
+
+<tr>
+  <td>source </td>
+  <td>string</td>
+  <td><p>URL of broker that published message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>datacontenttype </td>
+  <td>string</td>
+  <td><p>Content type of message in under <code>data</code></p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>data </td>
+  <td>object</td>
+  <td><p>Message payload containing id of deleted zone</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.id </td>
+  <td>integer</td>
+  <td><p>Camera id</p>
+ </td>
+  <td><em>Any</em></td>
+</tr></tbody>
+</table>
+
+
+###### Example of payload _(generated)_
+
+```json
+{
+  "id": 123,
+  "time": "2019-08-24T14:15:22Z",
+  "specversion": "1.0",
+  "type": "ZoneDeleted",
+  "source": "mqtt-broker.speedcams.tomtom.com",
+  "datacontenttype": "text/json",
+  "data": {
+    "id": 123
+  }
+}
+```
+
+
+
+
+
+
+<a name="channel-zone/{tileSystem}/{tileCode}/{tileCode}/#"></a>
+
+The topic on which message with single zone is published
+ex. `zone/H3/831e26fffffffff/841e261ffffffff/851e2603fffffff/861e2600fffffff/MOBILE_SPEED_CAM/522490973`
+
+
+#### Channel Parameters
+
+##### tileCode
+
+Tile id generated on some resolution level
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>tileCode </td>
+  <td>string</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+##### tileSystem
+
+Tile indexing system name
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>tileSystem </td>
+  <td>string</td>
+  <td> </td>
+  <td><em>Any</em></td>
+</tr>
+    </tbody>
+</table>
+
+
+
+
+###  `publish` zone/{tileSystem}/{tileCode}/{tileCode}/#
+
+*Zone topic with all cameras in some tile* 
+
+#### Message
+
+Accepts **one of** the following messages:
+
+##### Message `newOrChangedZone`
+
+
+
+##### Payload
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>id </td>
+  <td>integer</td>
+  <td><p>Id of message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>time </td>
+  <td>string</td>
+  <td><p>ISO formatted date of the message | RFC 3339 todo</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>specversion </td>
+  <td>string</td>
+  <td><p>Cloudevents specification version</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>type </td>
+  <td>string</td>
+  <td><p>Type of message</p>
+ </td>
+  <td><code>ZoneCreated</code>, <code>ZoneModified</code></td>
+</tr>
+
+<tr>
+  <td>source </td>
+  <td>string</td>
+  <td><p>URL of broker that published message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>datacontenttype </td>
+  <td>string</td>
+  <td><p>Content type of message in under <code>data</code></p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>data </td>
+  <td>object</td>
+  <td><p>Message payload containing message type specific data</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.id </td>
+  <td>integer</td>
+  <td><p>Camera id</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.openLR </td>
+  <td>string</td>
+  <td><p>Location serialized to openLR format http://www.openlr.org/</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.speedLimit </td>
+  <td>integer</td>
+  <td><p>Camera speed limit</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.type </td>
+  <td>string</td>
+  <td><p>Type of zone</p>
+ </td>
+  <td><code>TODO_ZONE_TYPE</code></td>
+</tr></tbody>
+</table>
+
+
+###### Example of payload _(generated)_
+
+```json
+{
+  "id": 123,
+  "time": "2019-08-24T14:15:22Z",
+  "specversion": "1.0",
+  "type": "ZoneCreated",
+  "source": "mqtt-broker.speedcams.tomtom.com",
+  "datacontenttype": "text/json",
+  "data": {
+    "id": 123,
+    "openLR": "Kw4pICUIUUsiDAHWAmkLUpc=",
+    "speedLimit": 50,
+    "type": "TODO_ZONE_TYPE"
+  }
+}
+```
+
+
+##### Message `deletedZone`
+
+
+
+##### Payload
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Accepted values</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>id </td>
+  <td>integer</td>
+  <td><p>Id of message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>time </td>
+  <td>string</td>
+  <td><p>ISO formatted date of the message | RFC 3339 todo</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>specversion </td>
+  <td>string</td>
+  <td><p>Cloudevents specification version</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>type </td>
+  <td>string</td>
+  <td><p>Type of message</p>
+ </td>
+  <td><code>ZoneDeleted</code></td>
+</tr>
+
+<tr>
+  <td>source </td>
+  <td>string</td>
+  <td><p>URL of broker that published message</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>datacontenttype </td>
+  <td>string</td>
+  <td><p>Content type of message in under <code>data</code></p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+<tr>
+  <td>data </td>
+  <td>object</td>
+  <td><p>Message payload containing id of deleted zone</p>
+ </td>
+  <td><em>Any</em></td>
+</tr>
+
+
+
+<tr>
+  <td>data.id </td>
+  <td>integer</td>
+  <td><p>Camera id</p>
+ </td>
+  <td><em>Any</em></td>
+</tr></tbody>
+</table>
+
+
+###### Example of payload _(generated)_
+
+```json
+{
+  "id": 123,
+  "time": "2019-08-24T14:15:22Z",
+  "specversion": "1.0",
+  "type": "ZoneDeleted",
+  "source": "mqtt-broker.speedcams.tomtom.com",
+  "datacontenttype": "text/json",
+  "data": {
+    "id": 123
+  }
+}
+```
+
+
+
+
+
+
